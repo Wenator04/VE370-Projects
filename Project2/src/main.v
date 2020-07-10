@@ -37,7 +37,7 @@ module main(clk50M, clk, ifPC, register, C, AN);
     wire[15:0] display;
 
     assign display = (ifPC) ? PCOutput : regOut;
-    assign regInput = (register < 8) ? register + 16 : ((register < 16) ? register : register + 8);
+    assign regInput = register;
     pipelined pipe(.clk(clk), .PCOutput(PCOutput), .regInput(regInput), .regOutput(regOut));
     ssd SSD(.clk(clk50M), .inputNum(display), .C(C), .AN(AN));
 endmodule
